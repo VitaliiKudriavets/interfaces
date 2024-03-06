@@ -1,1 +1,5 @@
-package interfaces
+package main
+
+func main() {
+
+}
