@@ -35,6 +35,31 @@ func main() {
 	var i InterfaceHere = &structHere{N1: 4, N2: 6}
 	fmt.Println(i.Sum())
 	var o InterfaceHere = otherStruct{A: 4, B: 3}
+	fmt.Printf("%v, %T\n", o, o)
 	fmt.Println(o.Sum())
 
+	var ai interface{}
+	ai = "jelly"
+	fmt.Println(ai)
+	fmt.Printf("%v, %T\n", ai, ai)
+	ai = 42
+	fmt.Println(ai)
+	fmt.Printf("%v, %T\n", ai, ai)
+
+	ais, ok := ai.(int) // type assertion
+	fmt.Println(ais, ok)
+	fmt.Printf("%v, %T\n", ais, ais)
+
+	var b interface{} = 3.14
+
+	switch b.(type) {
+	case string:
+		fmt.Println("b is string")
+	case int:
+		fmt.Println("b is int")
+	case bool:
+		fmt.Println("b is bool")
+	default:
+		fmt.Printf("unknown type %T\n", b)
+	}
 }
