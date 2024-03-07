@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"strings"
+)
 
 type AppError struct {
 	Err    error
@@ -14,12 +18,24 @@ func (a *AppError) Error() string {
 }
 
 func main() {
+	r := strings.NewReader("Hello world")
+	arr := make([]byte, 8)
+	for {
+		n, err := r.Read(arr)
+		fmt.Printf("n = %d err = %v b = %v\n", n, err, arr)
+		fmt.Printf("arr n bytes: %q \n", arr[:n])
+		if err == io.EOF {
+			break
+		}
+	}
+	// Error
 	err := m()
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 	fmt.Println("success")
+
 }
 
 func m() error {
